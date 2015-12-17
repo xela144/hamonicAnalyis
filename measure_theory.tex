@@ -1,0 +1,254 @@
+\documentclass[12pt]{article}
+
+% This first part of the file is called the PREAMBLE. It includes
+% customizations and command definitions. The preamble is everything
+% between \documentclass and \begin{document}.
+
+\usepackage[margin=1in]{geometry}  % set the margins to 1in on all sides
+\usepackage{graphicx}              % to include figures
+\usepackage{amsmath}               % great math stuff
+\usepackage{amsfonts}   
+           % for blackboard bold, etc
+\usepackage{amsthm}    % better theorem environments
+
+%\usepackage[demo]{graphicx}
+%\usepackage{caption}
+%\usepackage{subcaption}
+
+% to anchor figures
+%\usepackage{float}    
+%\restylefloat{figure}
+
+% various theorems, numbered by section
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+
+\DeclareMathOperator{\id}{id}
+
+\newcommand{\bd}[1]{\mathbf{#1}}  % for bolding symbols
+\newcommand{\mc}[1]{$\mathcal{#1}$}  % for bolding symbols - no math mode
+\newcommand{\MC}[1]{\mathcal{#1}}  % for bolding symbols
+\newcommand{\RR}{\mathbb{R}}      % for Real numbers
+\newcommand{\ZZ}{\mathbb{Z}}      % for Integers
+\newcommand{\NN}{\mathbb{N}}      % for Naturals 
+\newcommand{\col}[1]{\left[\begin{matrix} #1 \end{matrix} \right]}
+\newcommand{\comb}[2]{\binom{#1^2 + #2^2}{#1+#2}}
+
+
+
+%%%% "fancy header"
+\usepackage{fancyhdr}   %from donez
+\pagestyle{fancy}
+\headheight 15pt
+\rhead{Fall 2015}
+\chead{Ch 2. Measure Theory}
+\lhead{Real Analysis with Wavelets}
+\rfoot{}
+\cfoot{\thepage}
+\lfoot{}
+\renewcommand{\footrulewidth}{0pt}
+%\renewcommand{\headrulewidth}{0pt}
+%%%%%
+
+%\usepackage{lmodern}
+%\renewcommand{\sfdefault}{lmss}
+%\usepackage[T1]{fontenc}
+%
+%
+%\makeatletter
+%\special{papersize=\the\paperwidth,\the\paperheight}
+%
+%\usepackage{lipsum}
+%\usepackage{marginnote}
+%\usepackage[top=1.5cm, bottom=2cm, outer=5cm, inner=2cm, heightrounded, marginparwidth=4.2cm, marginparsep=.5cm]{geometry}
+%
+%\makeatother
+%\usepackage[backend=biber, style=brent]{biblatex}
+
+%\pagestyle{empty}
+
+%%%% cut here
+
+%\usepackage{paralist}
+%\renewenvironment{thebibliography}[1]{%
+%  \section*{\refname}%
+%  \let\par\relax\let\newblock\relax%
+%  \inparaenum[{[}1{]}]}{\endinparaenum}
+%\renewcommand{\bibitem}[1]{\item}
+%\makeatletter
+%\renewenvironment{thebibliography}[1]
+%     {\section*{\refname}%
+%      \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
+%      \begin{inparaenum}%
+%      \list{\@biblabel{\@arabic\c@enumiv}}%
+%           {\settowidth\labelwidth{\@biblabel{#1}}%
+%           \leftmargin\z@  \labelwidth
+%           % \leftmargin\labelwidth
+%            \advance\leftmargin\labelsep
+%            \@openbib@code
+%            \usecounter{enumiv}%
+%            \let\p@enumiv\@empty
+%            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+%      \sloppy
+%      \clubpenalty4000
+%      \@clubpenalty \clubpenalty
+%      \widowpenalty4000%
+%      \sfcode`\.\@m}
+%     {\def\@noitemerr
+%       {\@latex@warning{Empty `thebibliography' environment}}%
+%      \endlist\end{inparaenum}}
+%\renewcommand\newblock{}
+%\makeatother
+
+%%%% cut here 
+
+\usepackage{enumerate}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}%[section]
+ 
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+%\setcounter{section}{u}
+
+\begin{document}
+
+\section{Classes of sets}
+%\section{Classes of sets}
+%\setcounter{subsection}{1}
+\definition{A nonempty collection $\MC{R}$ of subsets of $X$ is called a \textit{ring} on $X$ if for any $E_1$, $E_2 \in \MC{R}$ we have $E_1\cup E_2 \in \MC{R}$ and $E_1 \setminus E_2 \in \MC{R}$. A ring on $X$ is called a \textit{$\sigma$-ring} if it is closed under countabl unions, that is, if for $E_k \in \MC{R}, k \in \NN$, then $\cup^{\infty}_{k=1}E_k\in\MC{R}$
+\begin{enumerate}[(a)]
+\item If \mc{R} is a ring, then $\emptyset\in\MC{R}$ 
+\item A,B $\in\MC{R} \rightarrow A\setminus B \in \MC{R}$ and $A\Delta B \in \MC{R}$.
+\item $E_k \in \MC{R}, k\in \{1..n\}\rightarrow  \bigcup\limits_{k=1}^{n} E_k \subset \MC{R}$, and $ \bigcap\limits_{k=1}^{n} E_k \subset\MC{R}$
+\item  $\bigcap\limits_{k=1}^{n} E_k \in \MC{R}$ since $\bigcap\limits_{k=1}^{n} E_k  = E\setminus \bigcup\limits_{k=1}^{n} (E \setminus E_k )$, that is, a $\sigma$-ring is closed under countable $\cap$
+\item \mc{R} is a $\sigma$-ring, and $E_k\in\MC{R}$ for $k\in\NN$, then $\varliminf_{n \to \infty} E_k \in \MC{R}$ and  $\varlimsup_{n \to \infty} E_k \in \MC{R}$ 
+\item $\MC{C} \subset 2^X \rightarrow \exists \MC{R}(\MC{C}):MC{C}\subset\MC{R}(\MC{C})$ and $\forall \MC{C}\subset\MC{R}: \MC{R}(\MC{C})\subset\MC{R}$ i.e. $ \MC{R}(\MC{C})$ is the smallest ring containing  \mc{R}.
+\item $\MC{C} \subset 2^X \rightarrow \exists \sigma_r(\MC{C}): \MC{C}\subset\sigma_r(\MC{C})$ and $\forall\sigma_r \supset\MC{C} \rightarrow\sigma_r(\MC{C})\subset \sigma_r$, i.e. \mc{R}(\mc{C}) is the smallest ring containing \mc{R}.
+\end{enumerate}
+}
+
+
+\section{Measures on a Ring}
+
+\definition{Length function on a collection of sets, \mc{I}:
+
+\begin{enumerate}[(a)]
+\item $\lambda(\emptyset) = 0$
+\item Monotone: $I\subset J \rightarrow \lambda(I) < \lambda(J)$
+
+\item Finite additivity: $I\in\MC{I}$ and $I=\bigcup\limits_{k=1}^nJ_k$ for $J_k$'s disjoint in $\MC{I}$
+\\
+
+{\centering
+$\rightarrow \lambda(I) = \sum\limits_{k=1}^n\lambda(J_k)$\par
+}
+
+\item Countable subadditivity: $I \in \MC{I}: I\subset \bigcup\limits_{k=1}^{\infty}I_k$ for $I_k \in\MC{I}, k\in\NN$
+\\
+
+{\centering
+$\rightarrow \lambda(I) \leq \sum\limits_{k=1}^{\infty}\lambda(I_k)$\par
+}
+
+\item Countable additivity: $I \in \MC{I}: I\subset \bigcup\limits_{k=1}^{\infty}I_k$ for $I_k \in\MC{I}, k\in\NN$, and mutually disjoint $I_k$'s:
+\\
+
+{\centering
+$\rightarrow \lambda(I) = \sum\limits_{k=1}^{\infty}\lambda(I_k)$\par
+}
+
+\item Translation invariance: $\lambda(I) = \lambda(I+y)$ for $y \in\RR$
+
+\end{enumerate}
+
+}
+
+
+\definition{$\mu:\MC{R}\mapsto\RR$ is a measure on a ring \mc{R} $\subset 2^X$ if:
+
+\begin{enumerate}[(a)]
+\item $\mu(\emptyset) = 0$
+\item $\forall E \in \MC{R}, \mu(E) \geq 0$
+\item For $E_k$'s disjoint in $\MC{R}: \mu(\bigcup\limits_{k=1}^{\infty}E_k) = \bigcup\limits_{k=1}^{\infty}\mu(E_k)$ 
+\end{enumerate}
+}
+
+\definition{Measure $m$ on the ring $\MC{R_0}$ on $\RR$, with $E=\cup_{i=1}^n(a_i,b_i]$ with $n \in \NN$ and disjoint $(a_i,b_i]$'s:
+\\
+
+{\centering $m(E) =  \sum\limits_{i=1}^n(b_i-a_i)$\par}
+
+}
+% $\mu\sim$ measure on a ring \mc{R}, later extended to a $\sigma$-ring and larger collections of sets using outer measure.
+\definition{Lebesgue measure: Given a subset $E\subset\RR$, with the length of an interval $I=[a,b]$ given by $\lambda(I) = b-a$, Lebesgue outer measure is defined as
+\\
+
+{\centering $m(E) =$ inf$\Bigg\{\displaystyle\sum\limits_{k=1}^{\infty}m(E_k) \Bigg | E_k \in \MC{R_0}$ and $E\subset \cup_{k=1}^{\infty} \Bigg\}$ \par
+}
+
+}
+
+\definition{
+Sigma ring, $S(\MC{R})$ that contains \mc{R}:
+\\
+
+{\centering $S(\MC{R}) = \{E \in 2^X | E\subset \cup^{\infty}_{i=1}E_i$ and $E_i\in\MC{R}, i\in\NN$\}\par
+}
+\
+
+*For the real line $\RR, S(\MC{R}) = \MC{P}(\RR)$
+
+}
+
+
+\section{Outer measure and Lebesgue Measure}
+
+\definition{Outer measure: For any set $E\in S(\MC{R})$, define \textit{outer measure}, $\mu^*(E)$ as:
+
+{\centering $\mu^*(E) =$ inf$\Bigg\{\displaystyle\sum\limits_{k=1}^{\infty}m(E_k) \Bigg | E \subset  \cup_{k=1}^{\infty}, E_i \in \MC{R} \Bigg\}$ \par
+}
+
+
+}
+
+
+\thm{The set $E$ is Lebesgue measurable iff for any $A\subset E$ and $B\subset E^C$:
+\\
+
+{\centering $m^*(A\cup B) = m^*(A) + m^*(B)$\par}
+
+
+}
+
+\thm{ Caratheodory condition: Let $E$ and $A$ be any set in $S(\MC{R})$. Then
+\\
+
+{\centering $\mu^*(E) = \mu*(E\cap A) + \mu^*(E\setminus A)$
+
+}
+
+
+}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
