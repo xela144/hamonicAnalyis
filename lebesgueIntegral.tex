@@ -1,0 +1,154 @@
+\documentclass[12pt]{article}
+
+% This first part of the file is called the PREAMBLE. It includes
+% customizations and command definitions. The preamble is everything
+% between \documentclass and \begin{document}.
+
+\usepackage[margin=1in]{geometry}  % set the margins to 1in on all sides
+\usepackage{graphicx}              % to include figures
+\usepackage{amsmath}               % great math stuff
+\usepackage{amsfonts}   
+           % for blackboard bold, etc
+\usepackage{amsthm}    % better theorem environments
+
+%\usepackage[demo]{graphicx}
+%\usepackage{caption}
+%\usepackage{subcaption}
+
+% to anchor figures
+%\usepackage{float}    
+%\restylefloat{figure}
+
+% various theorems, numbered by section
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+
+\DeclareMathOperator{\id}{id}
+
+\newcommand{\bd}[1]{\mathbf{#1}}  % for bolding symbols
+\newcommand{\mc}[1]{$\mathcal{#1}$}  % for bolding symbols - no math mode
+\newcommand{\MC}[1]{\mathcal{#1}}  % for bolding symbols
+\newcommand{\RR}{\mathbb{R}}      % for Real numbers
+\newcommand{\ZZ}{\mathbb{Z}}      % for Integers
+\newcommand{\NN}{\mathbb{N}}      % for Naturals 
+\newcommand{\col}[1]{\left[\begin{matrix} #1 \end{matrix} \right]}
+\newcommand{\comb}[2]{\binom{#1^2 + #2^2}{#1+#2}}
+
+
+
+%%%% "fancy header"
+\usepackage{fancyhdr}   %from donez
+\pagestyle{fancy}
+\headheight 15pt
+\rhead{Fall 2015}
+\chead{Ch 2. Measure Theory}
+\lhead{Real Analysis with Wavelets}
+\rfoot{}
+\cfoot{\thepage}
+\lfoot{}
+\renewcommand{\footrulewidth}{0pt}
+%\renewcommand{\headrulewidth}{0pt}
+%%%%%
+
+%\usepackage{lmodern}
+%\renewcommand{\sfdefault}{lmss}
+%\usepackage[T1]{fontenc}
+%
+%
+%\makeatletter
+%\special{papersize=\the\paperwidth,\the\paperheight}
+%
+%\usepackage{lipsum}
+%\usepackage{marginnote}
+%\usepackage[top=1.5cm, bottom=2cm, outer=5cm, inner=2cm, heightrounded, marginparwidth=4.2cm, marginparsep=.5cm]{geometry}
+%
+%\makeatother
+%\usepackage[backend=biber, style=brent]{biblatex}
+
+%\pagestyle{empty}
+
+%%%% cut here
+
+%\usepackage{paralist}
+%\renewenvironment{thebibliography}[1]{%
+%  \section*{\refname}%
+%  \let\par\relax\let\newblock\relax%
+%  \inparaenum[{[}1{]}]}{\endinparaenum}
+%\renewcommand{\bibitem}[1]{\item}
+%\makeatletter
+%\renewenvironment{thebibliography}[1]
+%     {\section*{\refname}%
+%      \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
+%      \begin{inparaenum}%
+%      \list{\@biblabel{\@arabic\c@enumiv}}%
+%           {\settowidth\labelwidth{\@biblabel{#1}}%
+%           \leftmargin\z@  \labelwidth
+%           % \leftmargin\labelwidth
+%            \advance\leftmargin\labelsep
+%            \@openbib@code
+%            \usecounter{enumiv}%
+%            \let\p@enumiv\@empty
+%            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+%      \sloppy
+%      \clubpenalty4000
+%      \@clubpenalty \clubpenalty
+%      \widowpenalty4000%
+%      \sfcode`\.\@m}
+%     {\def\@noitemerr
+%       {\@latex@warning{Empty `thebibliography' environment}}%
+%      \endlist\end{inparaenum}}
+%\renewcommand\newblock{}
+%\makeatother
+
+%%%% cut here 
+
+\usepackage{enumerate}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}%[section]
+ 
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+%\setcounter{section}{u}
+
+\begin{document}
+
+\section{Riemann and Lebesgue integrals}
+%\section{Classes of sets}
+%\setcounter{subsection}{1}
+
+Recall that the definition for a Riemann integral for a bounded function $f:[a,b]\mapsto\RR$, with a partition $\Delta : a = x_0<x_1<\dots<x_n=b$, define the meshsize, $|\Delta|$ to be
+\\
+
+{\centering $|\Delta| = $ max $\{\Delta x_k := x_k - x_{k-1}, k\in 1..n\}$ \par}
+
+\definition{The Riemann integral of $f$ on $[a,b]$ is defined as:
+\\
+
+{\centering $(R) \displaystyle\int^b_af(x)dx = \lim_{|\Delta| \to 0} \displaystyle\sum^n_{k=1}f(\xi_k) \Delta x_k$  \par}
+
+where $\xi_k \in [x_{k-1}, x_k], k = 1..n$
+
+}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
