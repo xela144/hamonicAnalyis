@@ -1,2 +1,2 @@
 #
-hamonicAnalysis
+harmonicAnalysis
