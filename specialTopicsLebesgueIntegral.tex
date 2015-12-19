@@ -33,6 +33,7 @@
 \newcommand{\mc}[1]{$\mathcal{#1}$}  % for bolding symbols - no math mode
 \newcommand{\MC}[1]{\mathcal{#1}}  % for bolding symbols
 \newcommand{\RR}{\mathbb{R}}      % for Real numbers
+\newcommand{\QQ}{\mathbb{Q}}      % for Real numbers
 \newcommand{\ZZ}{\mathbb{Z}}      % for Integers
 \newcommand{\NN}{\mathbb{N}}      % for Naturals 
 \newcommand{\col}[1]{\left[\begin{matrix} #1 \end{matrix} \right]}
@@ -41,7 +42,7 @@
 
 
 %%%% "fancy header"
-\usepackage{fancyhdr}   %from donez
+\usepackage{fancyhdr} 
 \pagestyle{fancy}
 \headheight 15pt
 \rhead{Fall 2015}
@@ -54,57 +55,6 @@
 %\renewcommand{\headrulewidth}{0pt}
 %%%%%
 
-%\usepackage{lmodern}
-%\renewcommand{\sfdefault}{lmss}
-%\usepackage[T1]{fontenc}
-%
-%
-%\makeatletter
-%\special{papersize=\the\paperwidth,\the\paperheight}
-%
-%\usepackage{lipsum}
-%\usepackage{marginnote}
-%\usepackage[top=1.5cm, bottom=2cm, outer=5cm, inner=2cm, heightrounded, marginparwidth=4.2cm, marginparsep=.5cm]{geometry}
-%
-%\makeatother
-%\usepackage[backend=biber, style=brent]{biblatex}
-
-%\pagestyle{empty}
-
-%%%% cut here
-
-%\usepackage{paralist}
-%\renewenvironment{thebibliography}[1]{%
-%  \section*{\refname}%
-%  \let\par\relax\let\newblock\relax%
-%  \inparaenum[{[}1{]}]}{\endinparaenum}
-%\renewcommand{\bibitem}[1]{\item}
-%\makeatletter
-%\renewenvironment{thebibliography}[1]
-%     {\section*{\refname}%
-%      \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
-%      \begin{inparaenum}%
-%      \list{\@biblabel{\@arabic\c@enumiv}}%
-%           {\settowidth\labelwidth{\@biblabel{#1}}%
-%           \leftmargin\z@  \labelwidth
-%           % \leftmargin\labelwidth
-%            \advance\leftmargin\labelsep
-%            \@openbib@code
-%            \usecounter{enumiv}%
-%            \let\p@enumiv\@empty
-%            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-%      \sloppy
-%      \clubpenalty4000
-%      \@clubpenalty \clubpenalty
-%      \widowpenalty4000%
-%      \sfcode`\.\@m}
-%     {\def\@noitemerr
-%       {\@latex@warning{Empty `thebibliography' environment}}%
-%      \endlist\end{inparaenum}}
-%\renewcommand\newblock{}
-%\makeatother
-
-%%%% cut here 
 
 \usepackage{enumerate}
 
@@ -121,32 +71,43 @@
 \section{Differentation and integration}
 \definition{Dini derifatives: $D^+f(f) = \varlimsup_{h\to 0^+} \dfrac{f(x+h)-f(x)}{h}$ }
 
-\end{document}
+\definition{Vitali covering: Set $E=[a,b]$ and sequence $\{r_n\} \in \QQ$ of all rationals,
+\\ 
 
-Recall that the definition for a Riemann integral for a bounded function $f:[a,b]\mapsto\RR$, with a partition $\Delta : a = x_0<x_1<\dots<x_n=b$, define the meshsize, $|\Delta|$ to be
+{\centering $\MC{V} = \{[r_n-\frac{1}{m}, r_n+\frac{1}{m}]| m,n\in\NN\} $
+\par} 
+
+is a Vitali covering of $E$.
+}
+
+\thm{Vital Covering thm: Given an $E\sim m^*(E)<\infty$ and \mc{V} a Vitali covering of $E$: $\forall \epsilon > 0\,\, \exists\{I_j\}_1^{n<\infty}\subset\MC{V} | m^*(E\setminus\cup^n_k I_k < \epsilon)$ with $I_j$'s disjoint.}
+\\
 \\
 
-{\centering $|\Delta| = $ max $\{\Delta x_k := x_k - x_{k-1}, k\in 1..n\}$ \par}
-
-\definition{The Riemann integral of $f$ on $[a,b]$ is defined as:
+Remark: There is a Vitali covering of finitely many disjoint intervals of measure 0 that covers a subset of $E$.
+\definition{ Let $f:[a,b]\mapsto\RR$ and define a partition $\Delta: a = x_0<x_1<\dots<x_n=b$
+\\
+$p(f,\Delta) = \displaystyle\sum^n_{k=1}[f(x_k)-f(x_{k-1}]^+$
+\\
+$n(f,\Delta) = \displaystyle\sum^n_{k=1}[f(x_k)-f(x_{k-1}]^-$
 \\
 
-{\centering $(R) \displaystyle\int^b_af(x)dx = \lim_{|\Delta| \to 0} \displaystyle\sum^n_{k=1}f(\xi_k) \Delta x_k$  \par}
+Let $y^+=\text{max}\{y,0\}, y^-=|y|-y^+$
+\\
 
-where $\xi_k \in [x_{k-1}, x_k], k = 1..n$
+${P}^b_a(f) = \text{sup}_{\Delta}p(f,\Delta)$
+${N}^b_a(f) = \text{sup}_{\Delta}n(f,\Delta)$
 
 }
 
+\definition{Total variation: $T_a^b(f) = \text{sup}_{\Delta}\{p(f,\Delta) + n(f,\Delta)\}$
+
+}
+
+\thm{${P}^b_a(f) - {N}^b_a(f) = T_a^b$}
 
 
-
-
-
-
-
-
-
-
+\end{document}
 
 
 
